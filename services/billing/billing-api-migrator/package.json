@@ -1,0 +1,17 @@
+{
+    "name": "billing-api-migrator",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "prisma migrate deploy",
+        "build": "prisma generate",
+        "start": "prisma migrate deploy"
+    },
+    "dependencies": {
+        "@prisma/client": "7.5.0",
+        "@prisma/adapter-pg": "7.10.0"
+    },
+    "devDependencies": {
+        "prisma": "7.5.0"
+    }
+}
