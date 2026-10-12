@@ -61,6 +61,14 @@ jobs:
         run: npm install --global @tdk-landscape/tdk-cli-core@latest
       - name: Generate project configuration
         run: tdk project --yes
+      - name: Install frontend dependencies for the host typecheck
+        # Frontends with a typecheck script get a host-side <service>-typecheck
+        # resource in Tilt. It runs tsc on the runner, so node_modules must exist
+        # here, or the resource fails with "typecheck needs host dependencies".
+        run: |
+          for pkg in $(grep -l '"typecheck"' services/*/*/package.json 2>/dev/null || true); do
+            (cd "$(dirname "$pkg")" && bun install)
+          done
       - name: Start the example and verify real app routes
         shell: bash
         env:

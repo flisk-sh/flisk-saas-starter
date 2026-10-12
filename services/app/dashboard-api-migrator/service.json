@@ -1,0 +1,13 @@
+{
+  "appName": "dashboard-api-migrator",
+  "appType": "migrator",
+  "stack": "app",
+  "port": 7000,
+  "featuresEnabled": [
+    "prisma"
+  ],
+  "dependsOn": [
+    "postgres"
+  ],
+  "schemaVersion": 1
+}

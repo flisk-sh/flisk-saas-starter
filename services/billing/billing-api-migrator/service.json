@@ -1,0 +1,13 @@
+{
+  "appName": "billing-api-migrator",
+  "appType": "migrator",
+  "stack": "billing",
+  "port": 7001,
+  "featuresEnabled": [
+    "prisma"
+  ],
+  "dependsOn": [
+    "postgres"
+  ],
+  "schemaVersion": 1
+}

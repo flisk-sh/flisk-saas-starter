@@ -6,7 +6,9 @@
   "featuresEnabled": [
     "prisma"
   ],
-  "dependsOn": [],
+  "dependsOn": [
+    "dashboard-api-migrator"
+  ],
   "healthCheckPath": "/health",
   "schemaVersion": 1
 }

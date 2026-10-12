@@ -6,7 +6,9 @@
   "featuresEnabled": [
     "prisma"
   ],
-  "dependsOn": [],
+  "dependsOn": [
+    "billing-api-migrator"
+  ],
   "healthCheckPath": "/health",
   "schemaVersion": 1
 }
