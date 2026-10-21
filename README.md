@@ -30,7 +30,7 @@ You declare each SaaS service in a compact `service.json`. TDK discovers the lan
   <img src="docs/readme-marquee.svg" alt="service.json, tdk up, dashboard, billing, Hono, Vite, Tilt, and Bun" width="100%">
 </p>
 
-> ⭐ **This project runs on [TDK CLI](https://github.com/flisk-sh/flisk).** If it saves you time, [star tdk-cli-core on GitHub](https://github.com/flisk-sh/flisk) so other developers can find it.
+> ⭐ **This project runs on [TDK CLI](https://github.com/flisk-sh/flisk).** If it saves you time, [star flisk on GitHub](https://github.com/flisk-sh/flisk) so other developers can find it.
 
 ## Run It
 
