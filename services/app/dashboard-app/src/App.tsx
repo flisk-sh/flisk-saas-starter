@@ -205,7 +205,7 @@ export function App() {
 
       <section className="cta-section">
         <div className="marquee" aria-hidden="true">
-          <span>service.json</span><span>tdk up app</span><span>Hono</span><span>Vite</span><span>Bun</span><span>Tilt</span>
+          <span>service.json</span><span>flisk up app</span><span>Hono</span><span>Vite</span><span>Bun</span><span>Tilt</span>
         </div>
         <h2>Clone it before your next launch.</h2>
         <a href="https://github.com/flisk-sh/flisk" className="button button-light">Install TDK CLI</a>
