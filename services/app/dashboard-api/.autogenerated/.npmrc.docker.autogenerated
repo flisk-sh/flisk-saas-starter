@@ -10,6 +10,6 @@
 ###############################################################################
 
 registry=https://registry.npmjs.org/
-@tdk-saas-starter:registry=https://registry.npmjs.org/
-@tdk-landscape:registry=https://registry.npmjs.org/
+@flisk-saas-starter:registry=https://registry.npmjs.org/
+@flisk-sh:registry=https://registry.npmjs.org/
 @identity:registry=https://registry.npmjs.org/

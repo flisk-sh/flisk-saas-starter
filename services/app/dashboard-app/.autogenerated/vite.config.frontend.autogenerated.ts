@@ -56,17 +56,17 @@ export default defineConfig({
     },
     proxy: {
       '': {
-        target: 'http://tdk-saas-starter.localhost/api/app-management',
+        target: 'http://flisk-saas-starter.localhost/api/app-management',
         changeOrigin: true,
         secure: false,
       },
       '/health': {
-        target: 'http://tdk-saas-starter.localhost/api/app-management',
+        target: 'http://flisk-saas-starter.localhost/api/app-management',
         changeOrigin: true,
         secure: false,
       },
       '/trpc': {
-        target: 'http://tdk-saas-starter.localhost/api/app-management',
+        target: 'http://flisk-saas-starter.localhost/api/app-management',
         changeOrigin: true,
         secure: false,
       },

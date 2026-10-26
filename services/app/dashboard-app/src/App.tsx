@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
-const DASHBOARD_API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://api.tdk-saas-starter.localhost/api/dashboard';
+const DASHBOARD_API_URL = import.meta.env.VITE_DASHBOARD_API_URL || 'http://api.flisk-saas-starter.localhost/api/dashboard';
 
 interface Metrics {
   mrr: number;
@@ -93,7 +93,7 @@ export function App() {
   return (
     <main ref={root} className="page-shell">
       <nav className="nav-shell" aria-label="SaaS starter navigation">
-        <a href="#top" className="brand">TDK SaaS Starter</a>
+        <a href="#top" className="brand">Flisk SaaS Starter</a>
         <div className="nav-links">
           <a href="#metrics">Dashboard</a>
           <a href="#app">App</a>
@@ -150,7 +150,7 @@ export function App() {
       <section id="app" className="bento-section">
         <div className="bento-intro">
           <h2>One workspace, four runnable resources.</h2>
-          <p>Each card maps to a manifest-driven resource that TDK can discover, generate, and run independently.</p>
+          <p>Each card maps to a manifest-driven resource that Flisk can discover, generate, and run independently.</p>
         </div>
         <div className="bento-grid">
           <article className="bento-card bento-large group-card">
@@ -208,7 +208,7 @@ export function App() {
           <span>service.json</span><span>flisk up app</span><span>Hono</span><span>Vite</span><span>Bun</span><span>Tilt</span>
         </div>
         <h2>Clone it before your next launch.</h2>
-        <a href="https://github.com/flisk-sh/flisk" className="button button-light">Install TDK CLI</a>
+        <a href="https://github.com/flisk-sh/flisk" className="button button-light">Install Flisk CLI</a>
       </section>
     </main>
   );

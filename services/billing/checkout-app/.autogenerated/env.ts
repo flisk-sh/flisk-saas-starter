@@ -6,4 +6,4 @@
  * Base API URL for billing resource
  * Uses VITE_API_URL env var with fallback to local dev URL
  */
-export const API_URL = import.meta.env.VITE_API_URL || 'http://api.tdk-saas-starter.localhost/api/billing-management';
+export const API_URL = import.meta.env.VITE_API_URL || 'http://api.flisk-saas-starter.localhost/api/billing-management';

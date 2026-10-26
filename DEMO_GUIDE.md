@@ -41,11 +41,11 @@ Flisk discovers four resources from `service.json` manifests across the `app` an
 When the local HTTP bridge or Traefik proxy is running, use these URLs:
 
 ```text
-Dashboard app: http://dashboard-app.app.tdk-saas-starter.localhost/
-Checkout app:  http://checkout-app.app.tdk-saas-starter.localhost/
+Dashboard app: http://dashboard-app.app.flisk-saas-starter.localhost/
+Checkout app:  http://checkout-app.app.flisk-saas-starter.localhost/
 
-App API:     http://api.tdk-saas-starter.localhost/api/dashboard-management
-Billing API: http://api.tdk-saas-starter.localhost/api/billing-management
+App API:     http://api.flisk-saas-starter.localhost/api/dashboard-management
+Billing API: http://api.flisk-saas-starter.localhost/api/billing-management
 ```
 
 Direct service ports are:

@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "tdk-saas-starter",
+      "name": "flisk-saas-starter",
       "devDependencies": {
         "@flisk-sh/flisk": "1.4.5",
       },

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 
-const BILLING_API_URL = import.meta.env.VITE_BILLING_API_URL || 'http://api.tdk-saas-starter.localhost/api/billing';
+const BILLING_API_URL = import.meta.env.VITE_BILLING_API_URL || 'http://api.flisk-saas-starter.localhost/api/billing';
 
 interface Plan {
   id: string;
@@ -90,7 +90,7 @@ export function App() {
   return (
     <main ref={root} className="page-shell">
       <nav className="nav-shell" aria-label="Checkout example navigation">
-        <a href="#top" className="brand">TDK SaaS Starter</a>
+        <a href="#top" className="brand">Flisk SaaS Starter</a>
         <div className="nav-links">
           <a href="#plans">Plans</a>
           <a href="#manifest">Manifest</a>

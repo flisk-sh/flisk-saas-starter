@@ -56,10 +56,10 @@ services:
       - PORT=4200
       - INSTANCE_ID=0
       - NATS_QUEUE_GROUP=app_backend_svc
-      - TILT_DATABASE_URL=postgresql://tdk_saas_starter:${DB_PASSWORD}@tdk_saas_starter_postgres:5432/tdk_saas_starter_app?schema=public
-      - TILT_NATS_URL=nats://tdk_saas_starter_nats:4222
+      - TILT_DATABASE_URL=postgresql://flisk_saas_starter:${DB_PASSWORD}@flisk_saas_starter_postgres:5432/flisk_saas_starter_app?schema=public
+      - TILT_NATS_URL=nats://flisk_saas_starter_nats:4222
       - NODE_ENV=development
-      - DATABASE_URL=postgresql://tdk_saas_starter:${DB_PASSWORD}@tdk_saas_starter_postgres:5432/tdk_saas_starter_app?schema=public
+      - DATABASE_URL=postgresql://flisk_saas_starter:${DB_PASSWORD}@flisk_saas_starter_postgres:5432/flisk_saas_starter_app?schema=public
       # Per-project escape hatch: set AUTO_MIGRATE=false in the project root .env
       # to skip Prisma auto-migration at container boot (e.g. while diagnosing a
       # migration/CLI issue) without touching the generator or any service code.
@@ -68,7 +68,7 @@ services:
       - IDENTITY_RESOURCE_URL=${IDENTITY_RESOURCE_URL:-None}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dashboard-api.rule=Host(`app.backend.tdk_saas_starter.local`)"
+      - "traefik.http.routers.dashboard-api.rule=Host(`app.backend.flisk_saas_starter.local`)"
       - "traefik.http.routers.dashboard-api.entrypoints=web"
       - "traefik.http.routers.dashboard-api.service=dashboard-api"
 
@@ -77,16 +77,16 @@ services:
       - "traefik.http.services.dashboard-api.loadbalancer.healthcheck.interval=10s"
       - "traefik.http.services.dashboard-api.loadbalancer.healthcheck.timeout=5s"
       - "traefik.http.services.dashboard-api.loadbalancer.healthcheck.followredirects=false"
-      - "traefik.docker.network=tdk_saas_starter_traefik-public"
+      - "traefik.docker.network=flisk_saas_starter_traefik-public"
 
-      - "traefik.http.routers.dashboard-api-project.rule=Host(`api.tdk-saas-starter.localhost`) && PathPrefix(`/api/dashboard`)"
+      - "traefik.http.routers.dashboard-api-project.rule=Host(`api.flisk-saas-starter.localhost`) && PathPrefix(`/api/dashboard`)"
       - "traefik.http.routers.dashboard-api-project.entrypoints=web"
       - "traefik.http.routers.dashboard-api-project.service=dashboard-api"
       - "traefik.http.routers.dashboard-api-project.middlewares=dashboard-api-strip-prefix-project"
       - "traefik.http.middlewares.dashboard-api-strip-prefix-project.stripprefix.prefixes=/api/dashboard"
       - "traefik.http.routers.dashboard-api-project.priority=114"
 
-      - "traefik.http.routers.dashboard-api-management.rule=Host(`api.tdk-saas-starter.localhost`) && PathPrefix(`/api/app-management`)"
+      - "traefik.http.routers.dashboard-api-management.rule=Host(`api.flisk-saas-starter.localhost`) && PathPrefix(`/api/app-management`)"
       - "traefik.http.routers.dashboard-api-management.entrypoints=web"
       - "traefik.http.routers.dashboard-api-management.service=dashboard-api"
       - "traefik.http.routers.dashboard-api-management.middlewares=dashboard-api-strip-prefix-management"
@@ -99,10 +99,10 @@ services:
       - "traefik.http.middlewares.dashboard-api-redirect.redirectregex.permanent=true"
 
     networks:
-      - tdk_saas_starter_traefik-public
-      - tdk_saas_starter_backend
-      - tdk_saas_starter_database
-      - tdk_saas_starter_infisical-network
+      - flisk_saas_starter_traefik-public
+      - flisk_saas_starter_backend
+      - flisk_saas_starter_database
+      - flisk_saas_starter_infisical-network
     healthcheck:
       test: ["CMD", "curl", "-f", "--max-time", "5", "http://localhost:4200/health"]
       interval: 10s
@@ -134,16 +134,16 @@ services:
         - VITE_APP_ENV=development
     labels:
         - "traefik.enable=true"
-        - 'traefik.http.routers.dashboard-app.rule=Host(`dashboard-app.localhost`) || (Host(`app.tdk-saas-starter.localhost`) && PathPrefix(`/dashboard-app`)) || (Host(`localhost`) && PathPrefix(`/dashboard-app`))'
+        - 'traefik.http.routers.dashboard-app.rule=Host(`dashboard-app.localhost`) || (Host(`app.flisk-saas-starter.localhost`) && PathPrefix(`/dashboard-app`)) || (Host(`localhost`) && PathPrefix(`/dashboard-app`))'
         - "traefik.http.routers.dashboard-app.entrypoints=web,websecure"
         - "traefik.http.routers.dashboard-app.priority=114"
         - "traefik.http.routers.dashboard-app.middlewares=dashboard-app-strip-prefix"
         - "traefik.http.middlewares.dashboard-app-strip-prefix.stripprefix.prefixes=/dashboard-app"
         - "traefik.http.services.dashboard-app.loadbalancer.server.port=80"
-        - "traefik.docker.network=tdk_saas_starter_traefik-public"
+        - "traefik.docker.network=flisk_saas_starter_traefik-public"
     networks:
-        - tdk_saas_starter_traefik-public
-        - tdk_saas_starter_backend
+        - flisk_saas_starter_traefik-public
+        - flisk_saas_starter_backend
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://127.0.0.1:80"]
       interval: 10s
@@ -153,11 +153,11 @@ services:
       start_period: 30s
 
 networks:
-  tdk_saas_starter_traefik-public:
+  flisk_saas_starter_traefik-public:
     external: true
-  tdk_saas_starter_backend:
+  flisk_saas_starter_backend:
     external: true
-  tdk_saas_starter_database:
+  flisk_saas_starter_database:
     external: true
-  tdk_saas_starter_infisical-network:
+  flisk_saas_starter_infisical-network:
     external: true

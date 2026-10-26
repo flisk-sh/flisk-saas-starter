@@ -67,7 +67,7 @@ app.post('/api/v1/checkout-session', async (c) => {
             planName: plan.name,
             amount: plan.price,
             interval: plan.interval,
-            checkoutUrl: `https://billing.tdk-saas-starter.localhost/checkout/${sessionId}`,
+            checkoutUrl: `https://billing.flisk-saas-starter.localhost/checkout/${sessionId}`,
             status: 'requires_payment_method',
         },
     });
