@@ -33,9 +33,9 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y 'postgresql*' >/dev/null 2>&1 || true
           sudo fuser -k 5432/tcp 2>/dev/null || true
       - name: Install Flisk
-        # Pinned: 1.4.66 and 1.4.67 break every Prisma image build (the stashed Prisma CLI is a
+        # Pinned: 1.4.51 to 1.4.67 break every Prisma image build (the stashed Prisma CLI is a
         # dangling symlink, flisk-sh/flisk#4409). Back to @latest once a release contains that fix.
-        run: npm install --global @flisk-sh/flisk@1.4.65
+        run: npm install --global @flisk-sh/flisk@1.4.50
       - name: Generate project configuration
         run: flisk project --yes
       - name: Run flisk doctor
@@ -60,9 +60,9 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y 'postgresql*' >/dev/null 2>&1 || true
           sudo fuser -k 5432/tcp 2>/dev/null || true
       - name: Install Flisk
-        # Pinned: 1.4.66 and 1.4.67 break every Prisma image build (the stashed Prisma CLI is a
+        # Pinned: 1.4.51 to 1.4.67 break every Prisma image build (the stashed Prisma CLI is a
         # dangling symlink, flisk-sh/flisk#4409). Back to @latest once a release contains that fix.
-        run: npm install --global @flisk-sh/flisk@1.4.65
+        run: npm install --global @flisk-sh/flisk@1.4.50
       - name: Generate project configuration
         run: flisk project --yes
       - name: Install frontend dependencies for the host typecheck
