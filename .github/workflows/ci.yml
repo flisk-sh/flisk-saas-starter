@@ -113,7 +113,7 @@ jobs:
               tilt get uiresources -o json | jq -c '.items[] | select(.status.updateStatus == "error") | {name: .metadata.name, status: .status}'
               for resource in $(tilt get uiresources -o json | jq -r '.items[] | select(.status.updateStatus == "error") | .metadata.name'); do
                 echo "::group::Build log for $resource"
-                tilt logs --source build --since 20m "$resource" || true
+                tilt logs --since 20m "$resource" || true
                 echo "::endgroup::"
               done
               exit 1
@@ -138,7 +138,7 @@ jobs:
                 tilt get uiresources -o json | jq -c '.items[] | select(.status.updateStatus == "error") | {name: .metadata.name, status: .status}'
               for resource in $(tilt get uiresources -o json | jq -r '.items[] | select(.status.updateStatus == "error") | .metadata.name'); do
                 echo "::group::Build log for $resource"
-                tilt logs --source build --since 20m "$resource" || true
+                tilt logs --since 20m "$resource" || true
                 echo "::endgroup::"
               done
                 exit 1
