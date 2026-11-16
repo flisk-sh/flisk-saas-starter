@@ -33,7 +33,9 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y 'postgresql*' >/dev/null 2>&1 || true
           sudo fuser -k 5432/tcp 2>/dev/null || true
       - name: Install Flisk
-        run: npm install --global @flisk-sh/flisk@latest
+        # Pinned: 1.4.51 to 1.4.67 break every Prisma image build (the stashed Prisma CLI is a
+        # dangling symlink, flisk-sh/flisk#4409). Back to @latest once a release contains that fix.
+        run: npm install --global @flisk-sh/flisk@1.4.50
       - name: Generate project configuration
         run: flisk project --yes
       - name: Run flisk doctor
@@ -58,7 +60,9 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -y 'postgresql*' >/dev/null 2>&1 || true
           sudo fuser -k 5432/tcp 2>/dev/null || true
       - name: Install Flisk
-        run: npm install --global @flisk-sh/flisk@latest
+        # Pinned: 1.4.51 to 1.4.67 break every Prisma image build (the stashed Prisma CLI is a
+        # dangling symlink, flisk-sh/flisk#4409). Back to @latest once a release contains that fix.
+        run: npm install --global @flisk-sh/flisk@1.4.50
       - name: Generate project configuration
         run: flisk project --yes
       - name: Install frontend dependencies for the host typecheck
@@ -113,7 +117,7 @@ jobs:
               tilt get uiresources -o json | jq -c '.items[] | select(.status.updateStatus == "error") | {name: .metadata.name, status: .status}'
               for resource in $(tilt get uiresources -o json | jq -r '.items[] | select(.status.updateStatus == "error") | .metadata.name'); do
                 echo "::group::Build log for $resource"
-                tilt logs --source build --since 20m "$resource" || true
+                tilt logs --since 20m "$resource" || true
                 echo "::endgroup::"
               done
               exit 1
@@ -138,7 +142,7 @@ jobs:
                 tilt get uiresources -o json | jq -c '.items[] | select(.status.updateStatus == "error") | {name: .metadata.name, status: .status}'
               for resource in $(tilt get uiresources -o json | jq -r '.items[] | select(.status.updateStatus == "error") | .metadata.name'); do
                 echo "::group::Build log for $resource"
-                tilt logs --source build --since 20m "$resource" || true
+                tilt logs --since 20m "$resource" || true
                 echo "::endgroup::"
               done
                 exit 1
