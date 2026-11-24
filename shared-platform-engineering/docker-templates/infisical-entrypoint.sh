@@ -112,7 +112,9 @@ apply_tilt_overrides() {
   
   for var_name in $TILT_OVERRIDE_VARS; do
     tilt_var="TILT_${var_name}"
-    tilt_value=$(eval echo \$$tilt_var)
+    # Never eval an environment value: command substitution or glob characters
+    # in a TILT_* value would execute or expand instead of being copied literally.
+    tilt_value=$(printenv "$tilt_var" || true)
     
     if [ -n "$tilt_value" ]; then
       log_success "   ✓ TILT_${var_name} overrides ${var_name}"
@@ -432,21 +434,38 @@ main() {
   secrets_exported=0
   if [ -s "$temp_secrets" ]; then
     while IFS= read -r line; do
-      # Skip empty lines
+      # Skip empty lines and anything that is not KEY=VALUE
       [ -z "$line" ] && continue
-      
+      case "$line" in
+        *=*) ;;
+        *) continue ;;
+      esac
+
       # Split on first = only (in case value contains =)
       key="${line%%=*}"
       value="${line#*=}"
-      
+
+      # Reject keys that are not valid environment variable names: exporting
+      # one aborts under set -e, and a crafted key must never reach eval.
+      case "$key" in
+        ''|[0-9]*|*[!A-Za-z0-9_]*)
+          log_warn "   Skipping malformed secret key: ${key}"
+          continue
+          ;;
+      esac
+
       # Only export if not already set in environment
-      eval "current_val=\$$key"
+      current_val=$(printenv "$key" || true)
       if [ -z "$current_val" ]; then
         export "${key}=${value}"
         secrets_exported=$((secrets_exported + 1))
       fi
     done < "$temp_secrets"
   fi
+
+  # The plain secrets file is no longer needed once exported; remove it before exec
+  # (the EXIT trap never runs because exec replaces this process).
+  rm -f "$temp_secrets"
   
   log_success "Injected ${secrets_exported} secret(s) from Infisical (preserving ${TILT_OVERRIDES_APPLIED} TILT override(s))"
   log_info "🎯 Final DATABASE_URL: ${DATABASE_URL:-not-set}"
