@@ -53,9 +53,9 @@ app.get('/api/v1/subscription', (c) => {
 });
 
 app.post('/api/v1/checkout-session', async (c) => {
-    const body = await c.req.json().catch(() => ({}));
-    const planId = typeof body.planId === 'string' ? body.planId : 'growth';
-    const plan = plans.find((candidate) => candidate.id === planId) ?? plans[1];
+    const body = await c.req.json().catch(() => null);
+    const plan = plans.find((candidate) => candidate.id === body?.planId);
+    if (!plan) return c.json({ error: 'An existing planId is required.' }, 400);
     const sessionId = `cs_test_${Math.random().toString(36).slice(2, 12)}`;
 
     sessions.set(sessionId, { planId: plan.id, status: 'requires_payment_method' });
